@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Checkout Code') {
       steps {
-        git credentialsId: 'github-pat', url: 'https://github.com/spring-projects/spring-petclinic.git'
+        git credentialsId: 'github-pat', url: 'https://github.com/hi-man-shu-7/spring-petclinic.git'
       }
     }
     stage('Build with Maven') {
