@@ -24,11 +24,12 @@ pipeline {
     }
     stage('Push to Docker Hub') {
       steps {
-        withDockerRegistry([credentialsId: 'docker-hub-creds']) {
-          sh 'docker push $DOCKER_IMAGE'
-        }
-      }
+        withDockerRegistry([credentialsId: 'docker-hub-creds', url: 'https://index.docker.io/v1/']) {
+        sh 'docker push $DOCKER_IMAGE'
     }
+  }
+}
+
     stage('Deploy to Kubernetes') {
       steps {
         sh 'kubectl set image deployment/sample-app-deployment sample-container=$DOCKER_IMAGE'
